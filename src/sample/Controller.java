@@ -46,8 +46,8 @@ public class Controller {
     }
 
     void getEulerData(double x0, double y0, double x1, int N){
-        Methods tmp = new Methods();
-        XYChart.Series[] res = tmp.DoEulersGraph(x0,y0,x1,N);
+        NumericalMethods tmp = new EulerMethod();
+        XYChart.Series[] res = tmp.getGraphic(x0,y0,x1,N);
         if(y0*y0 > 2) addSeries(res);
         else MyChart.getData().addAll(res[2]);
 
@@ -55,14 +55,14 @@ public class Controller {
             int min = Integer.parseInt(NminSetter.getText());
             int max = Integer.parseInt(NmaxSetter.getText());
 
-            XYChart.Series err = tmp.TotalError(x0, y0, x1, min, max, (-1));
+            XYChart.Series err = tmp.TotalError(x0, y0, x1, min, max);
             TotalErrorChart.getData().addAll(err);
         }
     }
 
     void getImprovedEulerData(double x0, double y0, double x1, int N){
-        Methods tmp = new Methods();
-        XYChart.Series[] res = tmp.DoImprovedGraph(x0,y0,x1,N);
+        NumericalMethods tmp = new ImprovedEuler();
+        XYChart.Series[] res = tmp.getGraphic(x0,y0,x1,N);
         if(y0*y0 > 2) addSeries(res);
         else MyChart.getData().addAll(res[2]);
 
@@ -70,14 +70,14 @@ public class Controller {
             int min = Integer.parseInt(NminSetter.getText());
             int max = Integer.parseInt(NmaxSetter.getText());
 
-            XYChart.Series err = tmp.TotalError(x0, y0, x1, min, max, (0));
+            XYChart.Series err = tmp.TotalError(x0, y0, x1, min, max);
             TotalErrorChart.getData().addAll(err);
         }
     }
 
     void getRungeKuttaData(double x0, double y0, double x1, int N){
-        Methods tmp = new Methods();
-        XYChart.Series[] res = tmp.DoRKGraph(x0,y0,x1,N);
+        NumericalMethods tmp = new RungeKuttaMethod();
+        XYChart.Series[] res = tmp.getGraphic(x0,y0,x1,N);
         if(y0*y0 > 2) addSeries(res);
         else MyChart.getData().addAll(res[2]);
 
@@ -85,7 +85,7 @@ public class Controller {
             int min = Integer.parseInt(NminSetter.getText());
             int max = Integer.parseInt(NmaxSetter.getText());
 
-            XYChart.Series err = tmp.TotalError(x0, y0, x1, min, max, (1));
+            XYChart.Series err = tmp.TotalError(x0, y0, x1, min, max);
             TotalErrorChart.getData().addAll(err);
         }
     }
